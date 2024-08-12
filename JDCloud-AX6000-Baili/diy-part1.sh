@@ -8,14 +8,21 @@
 # https://github.com/P3TERX/Actions-OpenWrt
 # File name: diy-part1.sh
 # Description: OpenWrt DIY script part 1 (Before Update feeds)
-#
 
-# Uncomment a feed source
-#sed -i 's/^#\(.*helloworld\)/\1/' feeds.conf.default
+cp -rf ${GITHUB_WORKSPACE}/mt7986a-glinet-gl-mt6000-21.02.dts ${GITHUB_WORKSPACE}/openwrt/target/linux/mediatek/files-5.4/arch/arm64/boot/dts/mediatek/mt7986a-glinet-gl-mt6000.dts
 
-# Add a feed source
-#echo 'src-git helloworld https://github.com/fw876/helloworld' >>feeds.conf.default
-#echo 'src-git passwall https://github.com/xiaorouji/openwrt-passwall' >>feeds.conf.default
-git clone https://github.com/messense/aliyundrive-webdav package/messense
-git clone https://github.com/gdy666/luci-app-lucky package/lucky
-git clone https://github.com/destan19/OpenAppFilter package/OpenAppFilter
+echo "openwrt/target/linux/mediatek/files-5.4/arch/arm64/boot/dts/mediatek/mt7986a-glinet-gl-mt6000.dts"
+
+cat ${GITHUB_WORKSPACE}/openwrt/target/linux/mediatek/files-5.4/arch/arm64/boot/dts/mediatek/mt7986a-glinet-gl-mt6000.dts
+
+sed -i '/glinet,gl-mt6000)/ {n; s/lan1 lan2 lan3 lan4 lan5/lan1 lan2 lan3 lan4 lan5 lan6/}' target/linux/mediatek/mt7986/base-files/etc/board.d/02_network
+
+echo "openwrt/target/linux/mediatek/mt7986/base-files/etc/board.d/02_network"
+
+cat ${GITHUB_WORKSPACE}/openwrt/target/linux/mediatek/mt7986/base-files/etc/board.d/02_network
+
+sed -i 's/MT7986_ePAeLNA_EEPROM_AX6000.bin/MT7986_iPAiLNA_EEPROM_AX6000.bin/g' ${GITHUB_WORKSPACE}/openwrt/target/linux/mediatek/mt7986/base-files/lib/preinit/90_extract_caldata
+
+echo "openwrt/target/linux/mediatek/mt7986/base-files/lib/preinit/90_extract_caldata"
+
+cat ${GITHUB_WORKSPACE}/openwrt/target/linux/mediatek/mt7986/base-files/lib/preinit/90_extract_caldata
