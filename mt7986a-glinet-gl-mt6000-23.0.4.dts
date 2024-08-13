@@ -254,6 +254,11 @@
 	status = "okay";
 };
 
+&xhci {
+ 	vusb33-supply = <&reg_3p3v>;
+ 	vbus-supply = <&usb_vbus>;
+ 	status = "okay";
+};
 //&ssusb {
 //	vusb33-supply = <&reg_3p3v>;
 //	vbus-supply = <&usb_vbus>;
