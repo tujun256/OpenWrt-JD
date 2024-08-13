@@ -18,7 +18,7 @@ cat ${GITHUB_WORKSPACE}/openwrt/target/linux/mediatek/files-5.4/arch/arm64/boot/
 
 sed -i 's/factory 0x0a/factory 0x2a/g' ${GITHUB_WORKSPACE}/openwrt/target/linux/mediatek/mt7986/base-files/etc/board.d/02_network
 
-sed -i '/glinet,gl-mt6000)/ {n; s/lan1 lan2 lan3 lan4 lan5/lan1 lan2 lan3 lan4 lan5 lan6/}' target/linux/mediatek/mt7986/base-files/etc/board.d/02_network
+sed -i '/glinet,gl-mt6000)/ {n; s/lan1 lan2 lan3 lan4 lan5/lan1 lan2 lan3 lan4 lan5 lan6/}' ${GITHUB_WORKSPACE}/openwrt/target/linux/mediatek/mt7986/base-files/etc/board.d/02_network
 
 echo "openwrt/target/linux/mediatek/mt7986/base-files/etc/board.d/02_network"
 
