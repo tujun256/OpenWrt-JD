@@ -5,8 +5,8 @@
 #include <dt-bindings/gpio/gpio.h>
 #include <dt-bindings/leds/common.h>
 / {
-	model = "GL.iNet GL-MT6000";
- 	compatible = "glinet,gl-mt6000","mediatek,mt7986a-emmc-rfb";
+	model = "mediatek mt7986a-ax6000-emmc-rfb";
+ 	compatible = "mediatek,mt7986a-emmc-rfb";
 	
 	chosen {
 		bootargs = "console=ttyS0,115200n1 loglevel=8  \t\t\t\tearlycon=uart8250,mmio32,0x11002000 \t\t\t\troot=PARTLABEL=rootfs rootwait rootfstype=squashfs,f2fs";
