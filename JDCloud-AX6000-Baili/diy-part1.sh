@@ -14,7 +14,7 @@ cp -rf ${GITHUB_WORKSPACE}/mt7986a-emmc-rfb.dts ${GITHUB_WORKSPACE}/openwrt/targ
 
 echo "openwrt/target/linux/mediatek/files-5.4/arch/arm64/boot/dts/mediatek/mt7986a-glinet-gl-mt6000.dts"
 
-cat ${GITHUB_WORKSPACE}/openwrt/target/linux/mediatek/files-5.4/arch/arm64/boot/dts/mediatek/mt7986a-glinet-gl-mt6000.dts
+cat ${GITHUB_WORKSPACE}/openwrt/target/linux/mediatek/files-5.4/arch/arm64/boot/dts/mediatek/mt7986a-emmc-rfb.dts
 
 sed -i 's/factory 0x0a/factory 0x2a/g' ${GITHUB_WORKSPACE}/openwrt/target/linux/mediatek/mt7986/base-files/etc/board.d/02_network
 
