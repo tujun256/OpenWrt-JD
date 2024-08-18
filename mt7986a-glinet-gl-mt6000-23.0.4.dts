@@ -38,7 +38,37 @@
 	 		gpios = <&pio 10 GPIO_ACTIVE_LOW>;
 	 	};
 	 };
+gpio-leds {
+    compatible = "gpio-leds";
 
+    power {
+        label = "power";
+        gpios = <0x14 0x16 0x01>;
+        default-state = "on";
+        linux,default-trigger = "default-on";
+    };
+
+    wlan2g {
+        label = "blue:wlan2g";
+        gpios = <0x14 0x17 0x01>;
+        default-state = "off";
+        linux,default-trigger = "phy0radio";
+    };
+
+    wlan5g {
+        label = "blue:wlan5g";
+        gpios = <0x14 0x18 0x01>;
+        default-state = "off";
+        linux,default-trigger = "phy1radio";
+    };
+
+    sys {
+        label = "sys";
+        gpios = <0x14 0x19 0x01>;
+        default-state = "off";
+        linux,default-trigger = "heartbeat";
+    };
+};
 	// leds {
 	// 	compatible = "gpio-leds";
 
