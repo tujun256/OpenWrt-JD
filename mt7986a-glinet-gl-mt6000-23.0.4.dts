@@ -43,21 +43,21 @@ gpio-leds {
 
     power {
         label = "power";
-        gpios = <&pio 19 GPIO_ACTIVE_LOW>;
+        gpios = <&pio 0 GPIO_ACTIVE_LOW>;
         default-state = "on";
         linux,default-trigger = "default-on";
     };
 
     wlan2g {
         label = "blue:wlan2g";
-        gpios = <&pio 20 GPIO_ACTIVE_LOW>;
+        gpios = <&pio 1 GPIO_ACTIVE_LOW>;
         default-state = "off";
         linux,default-trigger = "phy0radio";
     };
 
     wlan5g {
         label = "blue:wlan5g";
-        gpios = <&pio 21 GPIO_ACTIVE_LOW>;
+        gpios = <&pio 2 GPIO_ACTIVE_LOW>;
         default-state = "off";
         linux,default-trigger = "phy1radio";
     };
