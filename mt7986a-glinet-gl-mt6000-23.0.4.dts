@@ -63,7 +63,7 @@
 		// };
 
 		sys {
-			label = "sys";
+			label = "green:sys";
 			gpios = <&pio 22 GPIO_ACTIVE_LOW>;
 			default-state = "off";
 			linux,default-trigger = "heartbeat";
