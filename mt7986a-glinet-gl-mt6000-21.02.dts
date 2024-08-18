@@ -29,7 +29,7 @@
  		button-reset {
  			label = "reset";
  			linux,code = <KEY_RESTART>;
- 			gpios = <&pio 9 GPIO_ACTIVE_LOW>;
+ 			gpios = <&pio 16 GPIO_ACTIVE_LOW>;
  		};
 
  	};
@@ -39,12 +39,12 @@
 
 		led_status_white: status_white {
  			label = "white:status";
- 			gpios = <&pio 37 GPIO_ACTIVE_LOW>;
+ 			//gpios = <&pio 37 GPIO_ACTIVE_LOW>;
  		};
 
  		led_status_blue: status_blue {
  			label = "blue:status";
- 			gpios = <&pio 38 GPIO_ACTIVE_LOW>;
+ 			gpios = <&pio 22 GPIO_ACTIVE_LOW>;
  		};
 	};
 
