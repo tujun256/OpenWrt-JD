@@ -35,7 +35,7 @@
 	 	reset {
 	 		label = "reset";
 	 		linux,code = <KEY_RESTART>;
-	 		gpios = <&pio 10 GPIO_ACTIVE_LOW>;
+	 		gpios = <&pio 16 GPIO_ACTIVE_LOW>;
 	 	};
 	 };
 gpio-leds {
@@ -64,7 +64,7 @@ gpio-leds {
 
     sys {
         label = "sys";
-        gpios = <0x14 0x19 0x01>;
+        gpios = <&pio 22 GPIO_ACTIVE_LOW>;
         default-state = "off";
         linux,default-trigger = "heartbeat";
     };
