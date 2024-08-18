@@ -116,37 +116,43 @@
 		compatible = "mediatek,eth-mac";
 		reg = <1>;
 		phy-mode = "2500base-x";
-
-		fixed-link {
-			speed = <2500>;
-			full-duplex;
-			pause;
-		};
+		phy-handle = <&phy7>;
 	};
 
 	mdio: mdio-bus {
 		#address-cells = <1>;
 		#size-cells = <0>;
 
-		phy5: phy@5 {
-			compatible = "ethernet-phy-id67c9.de0a";
+		phy7: ethernet-phy@7 {
+			compatible = "ethernet-phy-ieee802.3-c45";
+			reg = <7>;
+			reset-assert-us = <100000>;
+			reset-deassert-us = <100000>;
+			reset-gpios = <&pio 6 GPIO_ACTIVE_LOW>;
+			//interrupt-parent = <&pio>;
+			//interrupts = <46 IRQ_TYPE_LEVEL_LOW>;
+			realtek,aldps-enable;
+		};
+
+		phy5: ethernet-phy@5 {
+			compatible = "ethernet-phy-ieee802.3-c45";
 			reg = <5>;
-			reset-gpios = <&pio 6 1>;
-			reset-assert-us = <600>;
-			reset-deassert-us = <20000>;
-			phy-mode = "2500base-x";
+			reset-assert-us = <100000>;
+			reset-deassert-us = <100000>;
+			reset-gpios = <&pio 48 GPIO_ACTIVE_LOW>;
+			//interrupt-parent = <&pio>;
+			//interrupts = <127 IRQ_TYPE_LEVEL_LOW>;
+			realtek,aldps-enable;
 		};
 
-		phy6: phy@6 {
-			compatible = "ethernet-phy-id67c9.de0a";
-			reg = <6>;
-			phy-mode = "2500base-x";
-		};
-
-		switch@0 {
+		switch: switch@1f {
 			compatible = "mediatek,mt7531";
 			reg = <31>;
-			reset-gpios = <&pio 5 0>;
+			reset-gpios = <&pio 5 GPIO_ACTIVE_HIGH>;
+			//interrupt-controller;
+			//interrupt-cells = <1>;
+			//interrupt-parent = <&pio>;
+			//interrupts = <66 IRQ_TYPE_LEVEL_HIGH>;
 
 			ports {
 				#address-cells = <1>;
@@ -177,9 +183,15 @@
 					label = "lan1";
 				};
 
+				port@5 {
+					reg = <5>;
+					label = "lan6";
+					phy-handle = <&phy5>;
+					phy-mode = "2500base-x";
+				};
+
 				port@6 {
 					reg = <6>;
-					label = "cpu";
 					ethernet = <&gmac0>;
 					phy-mode = "2500base-x";
 
