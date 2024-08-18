@@ -29,15 +29,15 @@
 		regulator-boot-on;
 		regulator-always-on;
 	};
-	// keys {
-	// 	compatible = "gpio-keys";
+	 keys {
+	 	compatible = "gpio-keys";
 
-	// 	reset {
-	// 		label = "reset";
-	// 		linux,code = <KEY_RESTART>;
-	// 		gpios = <&pio 9 GPIO_ACTIVE_LOW>;
-	// 	};
-	// };
+	 	reset {
+	 		label = "reset";
+	 		linux,code = <KEY_RESTART>;
+	 		gpios = <&pio 10 GPIO_ACTIVE_LOW>;
+	 	};
+	 };
 
 	// leds {
 	// 	compatible = "gpio-leds";
