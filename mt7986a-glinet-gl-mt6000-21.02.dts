@@ -6,12 +6,13 @@
 #include <dt-bindings/leds/common.h>
 / {
 	model = "mediatek mt7986a-ax6000-emmc-rfb";
- 	compatible = "mediatek,mt7986a-emmc-rfb";
-	
+ 	compatible = "glinet,gl-mt6000","mediatek,mt7986a-emmc-rfb";
 	chosen {
-		bootargs = "console=ttyS0,115200n1 loglevel=8  \t\t\t\tearlycon=uart8250,mmio32,0x11002000 \t\t\t\troot=PARTLABEL=rootfs rootwait rootfstype=squashfs,f2fs";
+		bootargs = "console=ttyS0,115200n1 loglevel=8  \
+				earlycon=uart8250,mmio32,0x11002000 \
+				root=PARTLABEL=rootfs rootwait";
 	};
-
+	
 	aliases {
 		led-boot = &led_status_white;
  		led-failsafe = &led_status_white;
@@ -29,7 +30,7 @@
  		button-reset {
  			label = "reset";
  			linux,code = <KEY_RESTART>;
- 			gpios = <&pio 16 GPIO_ACTIVE_LOW>;
+ 			gpios = <&pio 9 GPIO_ACTIVE_LOW>;
  		};
 
  	};
@@ -39,12 +40,12 @@
 
 		led_status_white: status_white {
  			label = "white:status";
- 			//gpios = <&pio 37 GPIO_ACTIVE_LOW>;
+ 			gpios = <&pio 37 GPIO_ACTIVE_LOW>;
  		};
 
  		led_status_blue: status_blue {
  			label = "blue:status";
- 			gpios = <&pio 22 GPIO_ACTIVE_LOW>;
+ 			gpios = <&pio 38 GPIO_ACTIVE_LOW>;
  		};
 	};
 
@@ -142,7 +143,21 @@
 		compatible = "mediatek,eth-mac";
 		reg = <0>;
 		phy-mode = "2500base-x";
+		ext-phy-reg = <1>;
+		ext-phy-reset-gpios = <&pio 10 0>;
+		fixed-link {
+			speed = <2500>;
+			full-duplex;
+			pause;
+		};	
+	};
 
+	gmac1: mac@1 {
+		compatible = "mediatek,eth-mac";
+		reg = <1>;
+		phy-mode = "2500base-x";
+		ext-phy-reg = <7>;
+		ext-phy-reset-gpios = <&pio 19 0>;	
 		fixed-link {
 			speed = <2500>;
 			full-duplex;
@@ -150,47 +165,14 @@
 		};
 	};
 
-	gmac1: mac@1 {
-		compatible = "mediatek,eth-mac";
-		reg = <1>;
-		phy-mode = "2500base-x";
-		phy-handle = <&phy7>;
-	};
-
 	mdio: mdio-bus {
 		#address-cells = <1>;
 		#size-cells = <0>;
-
-		phy7: ethernet-phy@7 {
-			compatible = "ethernet-phy-ieee802.3-c45";
-			reg = <7>;
-			reset-assert-us = <100000>;
-			reset-deassert-us = <100000>;
-			reset-gpios = <&pio 6 GPIO_ACTIVE_LOW>;
-			//interrupt-parent = <&pio>;
-			//interrupts = <46 IRQ_TYPE_LEVEL_LOW>;
-			realtek,aldps-enable;
-		};
-
-		phy5: ethernet-phy@5 {
-			compatible = "ethernet-phy-ieee802.3-c45";
-			reg = <5>;
-			reset-assert-us = <100000>;
-			reset-deassert-us = <100000>;
-			reset-gpios = <&pio 48 GPIO_ACTIVE_LOW>;
-			//interrupt-parent = <&pio>;
-			//interrupts = <127 IRQ_TYPE_LEVEL_LOW>;
-			realtek,aldps-enable;
-		};
-
-		switch: switch@1f {
+ 		
+		switch@0 {
 			compatible = "mediatek,mt7531";
 			reg = <31>;
-			reset-gpios = <&pio 5 GPIO_ACTIVE_HIGH>;
-			//interrupt-controller;
-			//interrupt-cells = <1>;
-			//interrupt-parent = <&pio>;
-			//interrupts = <66 IRQ_TYPE_LEVEL_HIGH>;
+			reset-gpios = <&pio 5 0>;
 
 			ports {
 				#address-cells = <1>;
@@ -198,12 +180,12 @@
 
 				port@0 {
 					reg = <0>;
-					label = "lan5";
+					label = "lan1";
 				};
 
 				port@1 {
 					reg = <1>;
-					label = "lan4";
+					label = "lan2";
 				};
 
 				port@2 {
@@ -213,23 +195,25 @@
 
 				port@3 {
 					reg = <3>;
-					label = "lan2";
+					label = "lan4";
 				};
 
-				port@4 {
-					reg = <4>;
-					label = "lan1";
-				};
 
 				port@5 {
 					reg = <5>;
-					label = "lan6";
-					phy-handle = <&phy5>;
+					label = "lan5";
 					phy-mode = "2500base-x";
+
+					fixed-link {
+						speed = <2500>;
+						full-duplex;
+						pause;
+					};
 				};
 
 				port@6 {
 					reg = <6>;
+					label = "cpu";
 					ethernet = <&gmac0>;
 					phy-mode = "2500base-x";
 
@@ -243,6 +227,7 @@
 		};
 	};
 };
+
 &xhci {
  	vusb33-supply = <&reg_3p3v>;
  	vbus-supply = <&usb_vbus>;
