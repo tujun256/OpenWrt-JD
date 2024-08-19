@@ -35,7 +35,7 @@
 	 	reset {
 	 		label = "reset";
 	 		linux,code = <KEY_RESTART>;
-	 		gpios = <&pio 16 GPIO_ACTIVE_LOW>;
+	 		//gpios = <&pio 16 GPIO_ACTIVE_LOW>;
 	 	};
 	 };
 	gpio-leds {
@@ -64,7 +64,7 @@
 
 		sys {
 			label = "green:sys";
-			gpios = <&pio 22 GPIO_ACTIVE_LOW>;
+			//gpios = <&pio 22 GPIO_ACTIVE_LOW>;
 			default-state = "off";
 			linux,default-trigger = "heartbeat";
 		};
@@ -88,7 +88,7 @@
 		regulator-name = "usb_vbus";
 		regulator-min-microvolt = <5000000>;
 		regulator-max-microvolt = <5000000>;
-		gpios = <&pio 24 GPIO_ACTIVE_HIGH>;
+		//gpios = <&pio 24 GPIO_ACTIVE_HIGH>;
 		enable-active-high;
 		regulator-boot-on;
 	};
@@ -131,7 +131,7 @@
 			reg = <7>;
 			reset-assert-us = <100000>;
 			reset-deassert-us = <100000>;
-			reset-gpios = <&pio 6 GPIO_ACTIVE_LOW>;
+			reset-gpios = <&pio 6 1>;
 			//interrupt-parent = <&pio>;
 			//interrupts = <46 IRQ_TYPE_LEVEL_LOW>;
 			realtek,aldps-enable;
@@ -142,7 +142,7 @@
 			reg = <5>;
 			reset-assert-us = <100000>;
 			reset-deassert-us = <100000>;
-			reset-gpios = <&pio 48 GPIO_ACTIVE_LOW>;
+			reset-gpios = <&pio 48 1>;
 			//interrupt-parent = <&pio>;
 			//interrupts = <127 IRQ_TYPE_LEVEL_LOW>;
 			realtek,aldps-enable;
@@ -151,7 +151,7 @@
 		switch: switch@1f {
 			compatible = "mediatek,mt7531";
 			reg = <31>;
-			reset-gpios = <&pio 5 GPIO_ACTIVE_HIGH>;
+			reset-gpios = <&pio 5 0>;
 			//interrupt-controller;
 			//interrupt-cells = <1>;
 			//interrupt-parent = <&pio>;
