@@ -116,6 +116,12 @@
 		phy-handle = <&phy7>;
 	};
 
+		fixed-link {
+			speed = <2500>;
+			full-duplex;
+			pause;
+		};
+
 	mdio: mdio-bus {
 		#address-cells = <1>;
 		#size-cells = <0>;
