@@ -8,9 +8,7 @@
 	model = "mediatek mt7986a-ax6000-emmc-rfb";
  	compatible = "glinet,gl-mt6000","mediatek,mt7986a-emmc-rfb";
 	chosen {
-		bootargs = "console=ttyS0,115200n1 loglevel=8  \
-				earlycon=uart8250,mmio32,0x11002000 \
-				root=PARTLABEL=rootfs rootwait";
+		bootargs = "console=ttyS0,115200n1 loglevel=8  \t\t\t\tearlycon=uart8250,mmio32,0x11002000 \t\t\t\troot=PARTLABEL=rootfs rootwait rootfstype=squashfs,f2fs";
 	};
 	
 	aliases {
@@ -30,7 +28,7 @@
  		button-reset {
  			label = "reset";
  			linux,code = <KEY_RESTART>;
- 			gpios = <&pio 9 GPIO_ACTIVE_LOW>;
+ 			gpios = <&pio 16 GPIO_ACTIVE_LOW>;
  		};
 
  	};
@@ -45,7 +43,7 @@
 
  		led_status_blue: status_blue {
  			label = "blue:status";
- 			gpios = <&pio 38 GPIO_ACTIVE_LOW>;
+ 			gpios = <&pio 22 GPIO_ACTIVE_LOW>;
  		};
 	};
 
@@ -73,7 +71,7 @@
 		regulator-name = "usb_vbus";
 		regulator-min-microvolt = <5000000>;
 		regulator-max-microvolt = <5000000>;
-		gpios = <&pio 24 GPIO_ACTIVE_HIGH>;
+		//gpios = <&pio 24 GPIO_ACTIVE_HIGH>;
 		enable-active-high;
 		regulator-boot-on;
 	};
@@ -143,8 +141,8 @@
 		compatible = "mediatek,eth-mac";
 		reg = <0>;
 		phy-mode = "2500base-x";
-		ext-phy-reg = <1>;
-		ext-phy-reset-gpios = <&pio 10 0>;
+		ext-phy-reg = <5>;
+		ext-phy-reset-gpios = <&pio 48 0>;
 		fixed-link {
 			speed = <2500>;
 			full-duplex;
@@ -157,7 +155,7 @@
 		reg = <1>;
 		phy-mode = "2500base-x";
 		ext-phy-reg = <7>;
-		ext-phy-reset-gpios = <&pio 19 0>;	
+		ext-phy-reset-gpios = <&pio 6 0>;	
 		fixed-link {
 			speed = <2500>;
 			full-duplex;
@@ -180,12 +178,12 @@
 
 				port@0 {
 					reg = <0>;
-					label = "lan1";
+					label = "lan5";
 				};
 
 				port@1 {
 					reg = <1>;
-					label = "lan2";
+					label = "lan4";
 				};
 
 				port@2 {
@@ -195,13 +193,17 @@
 
 				port@3 {
 					reg = <3>;
-					label = "lan4";
+					label = "lan2";
 				};
 
+				port@4 {
+					reg = <4>;
+					label = "lan1";
+				};
 
 				port@5 {
 					reg = <5>;
-					label = "lan5";
+					label = "lan6";
 					phy-mode = "2500base-x";
 
 					fixed-link {
