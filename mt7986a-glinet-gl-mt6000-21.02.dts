@@ -28,7 +28,7 @@
  		button-reset {
  			label = "reset";
  			linux,code = <KEY_RESTART>;
- 			//gpios = <&pio 16 GPIO_ACTIVE_LOW>;
+ 			gpios = <&pio 16 GPIO_ACTIVE_LOW>;
  		};
 
  	};
@@ -43,7 +43,7 @@
 
  		led_status_blue: status_blue {
  			label = "blue:status";
- 			//gpios = <&pio 22 GPIO_ACTIVE_LOW>;
+ 			gpios = <&pio 22 GPIO_ACTIVE_LOW>;
  		};
 	};
 
@@ -142,7 +142,7 @@
 		reg = <0>;
 		phy-mode = "2500base-x";
 		ext-phy-reg = <5>;
-		ext-phy-reset-gpios = <&pio 48 1>;
+		ext-phy-reset-gpios = <&pio 48 0>;
 		fixed-link {
 			speed = <2500>;
 			full-duplex;
@@ -155,7 +155,7 @@
 		reg = <1>;
 		phy-mode = "2500base-x";
 		ext-phy-reg = <7>;
-		ext-phy-reset-gpios = <&pio 6 1>;	
+		ext-phy-reset-gpios = <&pio 6 0>;	
 		fixed-link {
 			speed = <2500>;
 			full-duplex;
