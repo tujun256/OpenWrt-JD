@@ -20,7 +20,7 @@ sed -i 's/factory 0x0a/factory 0x2a/g' ${GITHUB_WORKSPACE}/openwrt/target/linux/
 
 sed -i '/glinet,gl-mt6000)/ {n; s/lan1 lan2 lan3 lan4 lan5/lan1 lan2 lan3 lan4 lan5 lan6/}' ${GITHUB_WORKSPACE}/openwrt/target/linux/mediatek/mt7986/base-files/etc/board.d/02_network
 
-sed -i '10i echo "Board: $board"' ${GITHUB_WORKSPACE}/openwrt/target/linux/mediatek/mt7986/base-files/etc/board.d/02_network
+sed -i '10i echo "Board: $1"' ${GITHUB_WORKSPACE}/openwrt/target/linux/mediatek/mt7986/base-files/etc/board.d/02_network
 
 echo "cat openwrt/target/linux/mediatek/mt7986/base-files/etc/board.d/02_network"
 
@@ -31,7 +31,3 @@ sed -i 's/MT7986_ePAeLNA_EEPROM_AX6000.bin/MT7986_iPAiLNA_EEPROM_AX6000.bin/g' $
 echo "cat openwrt/target/linux/mediatek/mt7986/base-files/lib/preinit/90_extract_caldata"
 
 cat ${GITHUB_WORKSPACE}/openwrt/target/linux/mediatek/mt7986/base-files/lib/preinit/90_extract_caldata
-
-echo "cat feeds/luci/modules/luci-base/po/zh_Hans/base.po"
-
-cat ${GITHUB_WORKSPACE}/openwrt/feeds/luci/modules/luci-base/po/zh_Hans/base.po
