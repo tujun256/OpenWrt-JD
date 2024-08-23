@@ -31,3 +31,7 @@ sed -i 's/MT7986_ePAeLNA_EEPROM_AX6000.bin/MT7986_iPAiLNA_EEPROM_AX6000.bin/g' $
 echo "cat openwrt/target/linux/mediatek/mt7986/base-files/lib/preinit/90_extract_caldata"
 
 cat ${GITHUB_WORKSPACE}/openwrt/target/linux/mediatek/mt7986/base-files/lib/preinit/90_extract_caldata
+
+echo "cat feeds/luci/modules/luci-base/po/zh_Hans/base.po"
+
+cat ${GITHUB_WORKSPACE}/openwrt/feeds/luci/modules/luci-base/po/zh_Hans/base.po
